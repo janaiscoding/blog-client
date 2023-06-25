@@ -56,9 +56,17 @@
         "async": false
       }
     },
-    "(app-client)/./app/page.tsx": {
+    "(app-client)/./app/posts/page.tsx": {
       "*": {
-        "id": "(sc_client)/./app/page.tsx",
+        "id": "(sc_client)/./app/posts/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./app/login/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./app/login/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -227,11 +235,19 @@
       ],
       "async": false
     },
-    "/home/janaiscoding/repos/github-projects/blog-client/app/page.tsx": {
-      "id": "(app-client)/./app/page.tsx",
+    "/home/janaiscoding/repos/github-projects/blog-client/app/posts/page.tsx": {
+      "id": "(app-client)/./app/posts/page.tsx",
       "name": "*",
       "chunks": [
-        "app/page:static/chunks/app/page.js"
+        "app/posts/page:static/chunks/app/posts/page.js"
+      ],
+      "async": false
+    },
+    "/home/janaiscoding/repos/github-projects/blog-client/app/login/page.tsx": {
+      "id": "(app-client)/./app/login/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/login/page:static/chunks/app/login/page.js"
       ],
       "async": false
     }
@@ -249,6 +265,14 @@
       "files": [
         "static/css/app/layout.css"
       ]
+    },
+    "/home/janaiscoding/repos/github-projects/blog-client/app/posts/page": {
+      "modules": [],
+      "files": []
+    },
+    "/home/janaiscoding/repos/github-projects/blog-client/app/login/page": {
+      "modules": [],
+      "files": []
     }
   }
 }
