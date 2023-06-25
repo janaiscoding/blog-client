@@ -17,9 +17,9 @@ export default function Login() {
     await fetch(API_LOGIN, opts_method_post)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         if (data.token !== undefined) {
           setJwtToken(data.token);
-          redirect('/')
         } else {
           setErrors(data.message);
         }
