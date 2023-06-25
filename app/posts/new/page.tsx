@@ -1,34 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
+import { getJwtToken } from "@/app/utils/authentication";
+import { fetchRequest, opts_method_post } from "@/app/utils/fetching";
+import { API_NEW_POST } from "@/app/utils/api_keys";
+import { Post } from "@/app/utils/types";
 
 export default function New() {
-  const [token, setToken] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [post, setPost] = useState<Post>();
 
-  const getJwtToken = () => {
-    return sessionStorage.getItem("jwt");
-  };
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getJwtToken()}`,
-    },
-    body: JSON.stringify({ title, text }),
-  };
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    await fetch("https://janas-blog-api.fly.dev/posts/new", requestOptions)
-      .then(async (response) => {
-        const data = await response.json();
-        console.log(data); // yay the new post was sent!
-        // here i will add a redirect to the post page :)
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    opts_method_post.body = JSON.stringify({ title, text });
+    fetchRequest(API_NEW_POST, opts_method_post, "post", setPost);
   };
 
   useEffect(() => {
