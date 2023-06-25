@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import fetchRequest from "../utils/fetching";
 
 type Post = {
   title: string;
@@ -8,31 +9,16 @@ type Post = {
   comments: [];
 };
 
-export default function Home() {
+export default function Posts() {
   const [posts, setPosts] = useState<Post[]>([]);
   const API = "https://janas-blog-api.fly.dev/posts/";
-
-  const fetchRequest = (url: string, setter: any) => {
-    fetch(url, {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setter(data.posts);
-        console.log("setting successful");
-        console.log(data.posts);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
   useEffect(() => {
-    fetchRequest(API, setPosts);
+    fetchRequest(API, "posts", setPosts);
   }, []);
   return (
-    <main className="h-screen flex flex-col items-start justify-center p-24 gap-24">
-      {posts.map((post, i) => (
+    <main className="h-min-screen flex flex-col items-start justify-center p-24 gap-24">
+      my posts
+      {posts?.map((post, i) => (
         <div key={i}>
           <a href={"posts/" + post._id}>
             {i + 1}. {post.title}
