@@ -5,7 +5,7 @@ import { opts_get } from "../utils/api_actions";
 import { API_ALL_POSTS } from "../utils/api_keys";
 import { Post } from "../utils/types";
 
-export default function Posts() {
+const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   useEffect(() => {
     fetchPublished(API_ALL_POSTS, opts_get, setPosts);
@@ -18,4 +18,5 @@ export default function Posts() {
       ))}
     </main>
   );
-}
+};
+export default Posts;

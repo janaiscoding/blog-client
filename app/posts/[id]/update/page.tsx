@@ -2,7 +2,7 @@
 import { fetchRequest, opts_get } from "@/app/utils/api_actions";
 import { PostWithComments } from "@/app/utils/types";
 import { useEffect, useState } from "react";
-import EditPost from "@/app/components/editPost";
+import EditPost from "@/app/components/EditPost";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [post, setPost] = useState<PostWithComments>();

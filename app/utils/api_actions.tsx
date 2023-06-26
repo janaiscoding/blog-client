@@ -41,6 +41,16 @@ async function loginRequest(
       //other surprising errors
     });
 }
+async function fetchAllPosts(url: string, opts: {}, setter: any) {
+  await fetch(url, opts)
+    .then((response) => response.json())
+    .then((data) => {
+      setter(data.posts);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
 
 async function fetchPublished(url: string, opts: {}, setter: any) {
   await fetch(url, opts)
@@ -109,6 +119,7 @@ const opts_delete = {
 export {
   fetchRequest,
   loginRequest,
+  fetchAllPosts,
   fetchPublished,
   updatePost,
   deletePost,
