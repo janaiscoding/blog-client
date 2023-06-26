@@ -1,9 +1,9 @@
 type Post = {
-    title: string;
-    text: string;
-    _id: string;
-    comments: [];
-  };
+  title: string;
+  text: string;
+  _id: string;
+  comments: [];
+};
 
 type PostWithComments = {
   title: string;
@@ -16,6 +16,7 @@ type PostWithComments = {
       createdAt: string;
     }
   ];
+  published: Boolean;
 };
 
 export type { Post, PostWithComments };

@@ -1,33 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getJwtToken, setJwtToken } from "../utils/authentication";
-import { opts_method_post } from "../utils/fetching";
+import { useState } from "react";
+import { setJwtToken } from "../utils/authentication";
+import { loginRequest, opts_post } from "../utils/api_actions";
 import { API_LOGIN } from "../utils/api_keys";
-import { redirect } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
-  const [handledError, setErrors] = useState("");
+  const [validationErrors, setValidErrs] = useState([]);
+  const [dbErrors, setDbErrs] = useState("");
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    opts_method_post.body = JSON.stringify({ email, password });
-
-    await fetch(API_LOGIN, opts_method_post)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        if (data.token !== undefined) {
-          setJwtToken(data.token);
-        } else {
-          setErrors(data.message);
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-        // Here: Fix erros for invalid email/password length
-      });
+    opts_post.body = JSON.stringify({ email, password });
+    loginRequest(API_LOGIN, opts_post, setValidErrs, setDbErrs, setJwtToken);
   };
   return (
     <div className="h-screen p-24">
@@ -39,6 +26,18 @@ export default function Login() {
         <input type="password" onChange={(e) => setPassword(e.target.value)} />
         <button type="submit">Log in</button>
       </form>
+      <div>
+        <p>errors field - validation</p>
+        {validationErrors.length
+          ? validationErrors.map((err: { msg: string }, i) => (
+              <p key={i}>{err.msg}</p>
+            ))
+          : ""}
+      </div>
+      <div>
+        <p>errors field - database</p>
+        {dbErrors}
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { getJwtToken } from "@/app/utils/authentication";
-import { fetchRequest, opts_method_post } from "@/app/utils/fetching";
+import { fetchRequest, opts_post } from "@/app/utils/api_actions";
 import { API_NEW_POST } from "@/app/utils/api_keys";
 import { Post } from "@/app/utils/types";
 
@@ -13,8 +13,8 @@ export default function New() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    opts_method_post.body = JSON.stringify({ title, text });
-    fetchRequest(API_NEW_POST, opts_method_post, "post", setPost);
+    opts_post.body = JSON.stringify({ title, text });
+    fetchRequest(API_NEW_POST, opts_post, "post", setPost);
   };
 
   useEffect(() => {
