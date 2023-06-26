@@ -1,21 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { opts_put, updatePost } from "../utils/api_actions";
+import {
+  deletePost,
+  opts_delete,
+  opts_put,
+  updatePost,
+} from "../utils/api_actions";
 import { redirect } from "next/navigation";
 
-export default function EditPost({
-  title,
-  text,
-  id,
-  published,
-  API_PAGE_ID,
-}: any) {
+const EditPost = ({ title, text, id, published, API_PAGE_ID }: any) => {
   const [updatedTitle, setUpdatedTitle] = useState(String);
   const [updatedText, setUpdatedText] = useState(String);
   const [updatedPublished, setPublished] = useState(Boolean);
-  const [complete, setComplete] = useState(Boolean);
-
+  const [updateComplete, setUpdateComplete] = useState(Boolean);
+  const [deleteComplete, setDeleteComplete] = useState(Boolean);
   const handleUpdate = async (e: any) => {
     e.preventDefault();
     opts_put.body = JSON.stringify({
@@ -23,12 +22,13 @@ export default function EditPost({
       text: updatedText,
       published: updatedPublished,
     });
-    await updatePost(API_PAGE_ID, opts_put, setComplete);
+    await updatePost(API_PAGE_ID, opts_put, setUpdateComplete);
   };
 
   const handleDelete = () => {
     //confirmation toggle?
     console.log("deleting post");
+    deletePost(API_PAGE_ID, opts_delete, setDeleteComplete);
   };
   useEffect(() => {
     if (text !== undefined) {
@@ -41,10 +41,13 @@ export default function EditPost({
       setPublished(published);
     }
     console.log("updating form values");
-    if (complete) {
+    if (updateComplete) {
       redirect(`/posts/${id}`);
     }
-  }, [title, text, published, complete]);
+    if (deleteComplete) {
+      redirect("/posts");
+    }
+  }, [title, text, published, updateComplete, deleteComplete]);
   return (
     <div>
       <p>different component, initial data into a form</p>
@@ -78,4 +81,6 @@ export default function EditPost({
       <button onClick={handleDelete}>Delete Post</button>
     </div>
   );
-}
+};
+
+export default EditPost;

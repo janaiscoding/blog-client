@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
 import { getJwtToken } from "./authentication";
+import { PostWithComments } from "./types";
 
 async function fetchRequest(url: string, opts: {}, type: string, setter: any) {
   await fetch(url, opts)
@@ -19,13 +19,15 @@ async function loginRequest(
   opts: {},
   validErrSetter: any,
   dbErrSetter: any,
-  tokenSetter: any
+  tokenSetter: any,
+  loggedSetter: any
 ) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
       if (data.token !== undefined) {
         tokenSetter(data.token);
+        loggedSetter(true);
       }
       if (data.errors) {
         validErrSetter(data.errors);
@@ -39,11 +41,37 @@ async function loginRequest(
       //other surprising errors
     });
 }
-async function updatePost(url: string, opts: {}, setter:any) {
+
+async function fetchPublished(url: string, opts: {}, setter: any) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
-      console.log('redirecting....')
+      const published = data.posts.filter(
+        (post: { published: boolean }) => post.published === true
+      );
+      setter(published);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+async function updatePost(url: string, opts: {}, setter: any) {
+  await fetch(url, opts)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("redirecting....");
+      setter(true);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+async function deletePost(url: string, opts: {}, setter: any) {
+  await fetch(url, opts)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data, "post was deleted");
       setter(true);
     })
     .catch((err) => {
@@ -61,7 +89,6 @@ const opts_post = {
     Authorization: `Bearer ${getJwtToken()}`,
   },
   body: "",
-  //This needs to be set with variables inside making a new post request to JSON.stringify the user inputs :3
 };
 const opts_put = {
   method: "PUT",
@@ -70,7 +97,6 @@ const opts_put = {
     Authorization: `Bearer ${getJwtToken()}`,
   },
   body: "",
-  //This needs to be set with variables inside making a new put request to JSON.stringify the user inputs :3
 };
 const opts_delete = {
   method: "DELETE",
@@ -78,14 +104,14 @@ const opts_delete = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${getJwtToken()}`,
   },
-  body: "",
-  //This needs to be set with variables inside making a new put request to JSON.stringify the user inputs :3
 };
 
 export {
   fetchRequest,
   loginRequest,
+  fetchPublished,
   updatePost,
+  deletePost,
   opts_get,
   opts_post,
   opts_put,

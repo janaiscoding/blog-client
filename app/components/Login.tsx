@@ -5,17 +5,25 @@ import { setJwtToken } from "../utils/authentication";
 import { loginRequest, opts_post } from "../utils/api_actions";
 import { API_LOGIN } from "../utils/api_keys";
 
-export default function Login() {
+const Login = ({ setLogged }: any) => {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [validationErrors, setValidErrs] = useState([]);
-  const [dbErrors, setDbErrs] = useState("");
+  const [dbErrors, setDbErrs] = useState(String);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     opts_post.body = JSON.stringify({ email, password });
-    loginRequest(API_LOGIN, opts_post, setValidErrs, setDbErrs, setJwtToken);
+    loginRequest(
+      API_LOGIN,
+      opts_post,
+      setValidErrs,
+      setDbErrs,
+      setJwtToken,
+      setLogged
+    );
   };
+
   return (
     <div className="h-screen p-24">
       ADMIN account login page
@@ -40,4 +48,5 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+export default Login;
