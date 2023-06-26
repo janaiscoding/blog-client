@@ -10,7 +10,6 @@ export default function Page({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     fetchRequest(API_PAGE_ID, opts_get, "post", setPost);
-    console.log("calling useeffc to fetch the post data", post);
   }, []);
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-10">
@@ -19,8 +18,8 @@ export default function Page({ params }: { params: { id: string } }) {
         title={post?.title}
         text={post?.text}
         published={post?.published}
-        id={post?._id}
         API_PAGE_ID={API_PAGE_ID}
+        setPost={setPost}
       />
     </div>
   );

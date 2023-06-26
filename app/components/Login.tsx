@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { setJwtToken } from "../utils/authentication";
-import { loginRequest, opts_post } from "../utils/api_actions";
 import { API_LOGIN } from "../utils/api_keys";
+import { loginRequest, opts_post } from "../utils/api_actions";
+import { setJwtToken } from "../utils/authentication";
+
 
 const Login = ({ setLogged }: any) => {
   const [email, setEmail] = useState<string>();
@@ -25,7 +26,7 @@ const Login = ({ setLogged }: any) => {
   };
 
   return (
-    <div className="h-screen p-24">
+    <div>
       ADMIN account login page
       <form onSubmit={(e) => handleSubmit(e)}>
         <label>Email</label>

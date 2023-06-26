@@ -1,26 +1,18 @@
 import { NextPage } from "next";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
-import { deletePost, opts_delete } from "../utils/api_actions";
+import DeletePost from "./DeletePost";
 
 interface Props {
   post: {
-    title: String;
-    text: String;
-    _id: String;
-    published: Boolean;
+    title: string;
+    text: string;
+    _id: string;
+    published: boolean;
   };
-  setter: any;
-  deleted: Boolean;
+  refresher: boolean;
+  setRefresher: any;
 }
 
-const PostAdminPreview: NextPage<Props> = ({ post, deleted, setter }) => {
-  const API_PAGE_ID = `https://janas-blog-api.fly.dev/posts/${post._id}`;
-
-  const handleDelete = () => {
-    deletePost(API_PAGE_ID, opts_delete, setter);
-    deleted ? !deleted : deleted;
-  };
+const PostAdminPreview: NextPage<Props> = ({ post, refresher, setRefresher }) => {
 
   return (
     <div className="grid grid-cols-5">
@@ -28,7 +20,7 @@ const PostAdminPreview: NextPage<Props> = ({ post, deleted, setter }) => {
       <p>{post.text}</p>
       {post.published ? <p>Is published</p> : <p>Not published</p>}
       <a href={`/posts/${post._id}/update`}>Edit</a>
-      <button onClick={handleDelete}>Delete</button>
+      <DeletePost id={post._id} refresher={refresher} setRefresher={setRefresher} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 const getJwtToken = () => {
+  console.log(sessionStorage.getItem("JWT_TOKEN"))
   return sessionStorage.getItem("JWT_TOKEN");
 };
 const setJwtToken = (token: string) => {

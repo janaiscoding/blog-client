@@ -66,6 +66,22 @@ async function fetchPublished(url: string, opts: {}, setter: any) {
     });
 }
 
+async function createPost(
+  url: string,
+  opts: {},
+  refresher: boolean,
+  setter: any
+) {
+  await fetch(url, opts)
+    .then((response) => response.json())
+    .then((data) => {
+      setter(!refresher);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+}
+
 async function updatePost(url: string, opts: {}, setter: any) {
   await fetch(url, opts)
     .then((response) => response.json())
@@ -77,12 +93,17 @@ async function updatePost(url: string, opts: {}, setter: any) {
       console.log(err.message);
     });
 }
-async function deletePost(url: string, opts: {}, setter: any) {
+async function deletePost(
+  url: string,
+  opts: {},
+  refresher: boolean,
+  setter: any
+) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
       console.log(data, "post was deleted");
-      setter(true);
+      setter(!refresher);
     })
     .catch((err) => {
       console.log(err.message);
@@ -121,6 +142,7 @@ export {
   loginRequest,
   fetchAllPosts,
   fetchPublished,
+  createPost,
   updatePost,
   deletePost,
   opts_get,

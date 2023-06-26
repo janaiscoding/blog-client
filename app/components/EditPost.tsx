@@ -1,19 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  deletePost,
-  opts_delete,
-  opts_put,
-  updatePost,
-} from "../utils/api_actions";
-import { redirect } from "next/navigation";
+import { opts_put, updatePost } from "../utils/api_actions";
 
-const EditPost = ({ title, text, id, published, API_PAGE_ID }: any) => {
+const EditPost = ({ title, text, published, API_PAGE_ID, setPost }: any) => {
   const [updatedTitle, setUpdatedTitle] = useState(String);
   const [updatedText, setUpdatedText] = useState(String);
   const [updatedPublished, setPublished] = useState(Boolean);
-  const [updateComplete, setUpdateComplete] = useState(Boolean);
 
   const handleUpdate = async (e: any) => {
     e.preventDefault();
@@ -22,7 +15,7 @@ const EditPost = ({ title, text, id, published, API_PAGE_ID }: any) => {
       text: updatedText,
       published: updatedPublished,
     });
-    await updatePost(API_PAGE_ID, opts_put, setUpdateComplete);
+    await updatePost(API_PAGE_ID, opts_put, setPost);
   };
 
   useEffect(() => {
@@ -35,11 +28,7 @@ const EditPost = ({ title, text, id, published, API_PAGE_ID }: any) => {
     if (published !== undefined) {
       setPublished(published);
     }
-    console.log("updating form values");
-    if (updateComplete) {
-      redirect(`/posts/${id}`);
-    }
-  }, [title, text, published, updateComplete]);
+  }, [title, text, published]);
   return (
     <div>
       <p>different component, initial data into a form</p>
