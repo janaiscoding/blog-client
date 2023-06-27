@@ -13,7 +13,6 @@ export default function Page({ params }: { params: { id: string } }) {
   }, []);
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-10">
-      <h1> UPDATE PAGE OF POST </h1>
       <EditPost
         title={post?.title}
         text={post?.text}

@@ -6,6 +6,12 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      overpass: ["Overpass-Regular", "sans-serif"],
+      overpass600: ["Overpass-Semibold", "sans-serif"],
+      poppins300: ["Poppins-Light", "sans-serif"],
+      poppins500: ["Poppins-Medium", "sans-serif"],
+    },
     colors: {
       blue: "#18728b",
       grey: "#586565",
@@ -24,6 +30,15 @@ module.exports = {
     },
     dropShadow: {
       xl: "0px 4px 10px rgba(45 138 164 / 0.5) ",
+    },
+    keyframes: {
+      wiggle: {
+        "0%, 100%": { transform: "translateX(0.25rem)" },
+        "50%": { transform: "translateX(0)" },
+      },
+    },
+    animation: {
+      wiggle: "wiggle 1s ease-in-out infinite",
     },
   },
   plugins: [],

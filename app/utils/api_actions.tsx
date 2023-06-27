@@ -1,5 +1,4 @@
 import { getJwtToken } from "./authentication";
-import { PostWithComments } from "./types";
 
 async function fetchRequest(url: string, opts: {}, type: string, setter: any) {
   await fetch(url, opts)
@@ -25,9 +24,9 @@ async function loginRequest(
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       if (data.token !== undefined) {
         tokenSetter(data.token);
-        console.log('setting to true')
         loggedSetter(true);
       }
       if (data.errors) {
@@ -67,16 +66,12 @@ async function fetchPublished(url: string, opts: {}, setter: any) {
     });
 }
 
-async function createPost(
-  url: string,
-  opts: {},
-  refresher: boolean,
-  setter: any
-) {
+async function createPost(url: string, opts: {}, setter: any) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
-      setter(!refresher);
+      console.log(data, "post was created");
+      setter(data.post._id);
     })
     .catch((error) => {
       console.log(error.message);

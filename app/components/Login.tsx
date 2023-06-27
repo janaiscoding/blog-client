@@ -15,6 +15,7 @@ const Login = ({ setLogged }: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     opts_post.body = JSON.stringify({ email, password });
+    console.log('handling logging in')
     loginRequest(
       API_LOGIN,
       opts_post,

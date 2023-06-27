@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import DeletePost from "./DeletePost";
+import Heading from "./UI_components/Heading";
 
 interface Props {
   post: {
@@ -15,9 +16,8 @@ interface Props {
 const PostAdminPreview: NextPage<Props> = ({ post, refresher, setRefresher }) => {
 
   return (
-    <div className="grid grid-cols-5">
-      <a href={`/posts/${post._id}`}>{post.title}</a>
-      <p>{post.text}</p>
+    <div className="border">
+      <a href={`/posts/${post._id}`}><Heading title={post.title} /></a>
       {post.published ? <p>Is published</p> : <p>Not published</p>}
       <a href={`/posts/${post._id}/update`}>Edit</a>
       <DeletePost id={post._id} refresher={refresher} setRefresher={setRefresher} />

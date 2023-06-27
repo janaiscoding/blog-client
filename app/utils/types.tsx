@@ -7,7 +7,7 @@ type Post = {
 
 type PostWithComments = {
   title: string;
-  text: string;
+  text: string | TrustedHTML;
   _id: string;
   comments: [
     {

@@ -5,17 +5,16 @@ import AdminView from "../components/AdminView";
 import Login from "../components/Login";
 
 export default function Admin() {
-  const [logged, setLogged] = useState(Boolean);
+  const [logged, setLogged] = useState(false);
   useEffect(() => {
-    const jwtToken = getJwtToken(); //logged is either set on initial login or on searching is the user is already logged in
+    const jwtToken = getJwtToken();
     if (jwtToken) {
       setLogged(true);
-      console.log('here', logged)
     }
-    console.log(logged)
   }, []);
   return (
     <div className="h-screen">
+      ADMIN
       {logged ? <AdminView /> : <Login setLogged={setLogged} />}
     </div>
   );
