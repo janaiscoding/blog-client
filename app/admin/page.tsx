@@ -10,7 +10,9 @@ export default function Admin() {
     const jwtToken = getJwtToken(); //logged is either set on initial login or on searching is the user is already logged in
     if (jwtToken) {
       setLogged(true);
+      console.log('here', logged)
     }
+    console.log(logged)
   }, []);
   return (
     <div className="h-screen">

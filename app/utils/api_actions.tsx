@@ -27,6 +27,7 @@ async function loginRequest(
     .then((data) => {
       if (data.token !== undefined) {
         tokenSetter(data.token);
+        console.log('setting to true')
         loggedSetter(true);
       }
       if (data.errors) {

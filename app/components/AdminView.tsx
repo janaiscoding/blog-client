@@ -1,11 +1,10 @@
-"use client";
 import { useEffect, useState } from "react";
 import { fetchAllPosts, opts_get } from "../utils/api_actions";
 import { API_ALL_POSTS } from "../utils/api_keys";
 import NewPost from "./NewPost";
 import PostAdminPreview from "./PostAdminPreview";
 
-const AdminView = () => {
+const AdminView = async () => {
   const [posts, setPosts] = useState([]);
   const [refresher, setRefresher] = useState(Boolean);
 
@@ -17,11 +16,18 @@ const AdminView = () => {
       setRefresher={setRefresher}
     />
   ));
-
-  useEffect(() => {
-    fetchAllPosts(API_ALL_POSTS, opts_get, setPosts);
-    console.log('refreshing everytime on', refresher)
-  }, [refresher]);
+  // async function getData() {
+  //   const res = await fetch(API_ALL_POSTS);
+  //   if (!res.ok) {
+  //     throw new Error("Failed to fetch data");
+  //   }
+  //   return res.json();
+  // }
+  // const data = await getData();
+  // useEffect(() => {
+  //   fetchAllPosts(API_ALL_POSTS, opts_get, setPosts);
+  //   console.log('refreshing everytime on', refresher)
+  // }, [refresher]);
 
   return (
     <div>
