@@ -4,6 +4,7 @@ import { fetchPublished } from "../utils/api_actions";
 import { opts_get } from "../utils/api_actions";
 import { API_ALL_POSTS } from "../utils/api_keys";
 import { Post } from "../utils/types";
+import Heading from "../components/UI_components/Heading";
 
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -12,7 +13,7 @@ const Posts = () => {
   }, []);
   return (
     <main className="h-min-screen flex flex-col items-start justify-center p-24 gap-24">
-      my published posts for the world to see
+      <Heading title={"Published blog posts"} />
       {posts.map((post, i) => (
         <p key={i}>{post.title}</p>
       ))}

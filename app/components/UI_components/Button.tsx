@@ -8,7 +8,7 @@ const Button = ({ content, type, onClick }: any) => {
     <button
       type={type}
       onClick={onClick}
-      className={`flex items-center border-2 border-blue p-2 gap-2 mt-4`}
+      className={`flex items-center border-2 border-blue p-2 gap-2`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

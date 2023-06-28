@@ -14,7 +14,6 @@ export default function Admin() {
   }, []);
   return (
     <div className="h-screen">
-      ADMIN
       {logged ? <AdminView /> : <Login setLogged={setLogged} />}
     </div>
   );

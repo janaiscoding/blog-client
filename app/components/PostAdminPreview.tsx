@@ -13,14 +13,29 @@ interface Props {
   setRefresher: any;
 }
 
-const PostAdminPreview: NextPage<Props> = ({ post, refresher, setRefresher }) => {
-
+const PostAdminPreview: NextPage<Props> = ({
+  post,
+  refresher,
+  setRefresher,
+}) => {
   return (
-    <div className="border">
-      <a href={`/posts/${post._id}`}><Heading title={post.title} /></a>
-      {post.published ? <p>Is published</p> : <p>Not published</p>}
-      <a href={`/posts/${post._id}/update`}>Edit</a>
-      <DeletePost id={post._id} refresher={refresher} setRefresher={setRefresher} />
+    <div className="bg-purewhite shadow-md p-4 rounded">
+      <a href={`/posts/${post._id}`}>
+        <Heading title={post.title} />
+      </a>
+      {post.published ? (
+        <p className="text-grey">Is published</p>
+      ) : (
+        <p className="text-grey">Not published</p>
+      )}
+      <div className="flex justify-between mt-4">
+        <a href={`/posts/${post._id}/update`}>Edit</a>
+        <DeletePost
+          id={post._id}
+          refresher={refresher}
+          setRefresher={setRefresher}
+        />
+      </div>
     </div>
   );
 };
