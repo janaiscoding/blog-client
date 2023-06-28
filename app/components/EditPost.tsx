@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { opts_put, updatePost } from "../utils/api_actions";
+import Form from "./UI_components/Form";
+import { redirect } from "next/navigation";
 
-const EditPost = ({ title, text, published, API_PAGE_ID, setPost }: any) => {
+const EditPost = ({ title, text, published, API_PAGE_ID, postId }: any) => {
   const [updatedTitle, setUpdatedTitle] = useState(String);
   const [updatedText, setUpdatedText] = useState(String);
   const [updatedPublished, setPublished] = useState(Boolean);
-
+  const [updated, setUpdated] = useState(Boolean);
   const handleUpdate = async (e: any) => {
     e.preventDefault();
     opts_put.body = JSON.stringify({
@@ -15,7 +17,7 @@ const EditPost = ({ title, text, published, API_PAGE_ID, setPost }: any) => {
       text: updatedText,
       published: updatedPublished,
     });
-    await updatePost(API_PAGE_ID, opts_put, setPost);
+    await updatePost(API_PAGE_ID, opts_put, setUpdated);
   };
 
   useEffect(() => {
@@ -27,38 +29,23 @@ const EditPost = ({ title, text, published, API_PAGE_ID, setPost }: any) => {
     }
     if (published !== undefined) {
       setPublished(published);
+    }console.log(postId)
+    if(updated){
+      redirect(`/posts/${postId}`)
     }
-  }, [title, text, published]);
+  }, [title, text, published, updated]);
   return (
     <div>
-      <p>different component, initial data into a form</p>
-      <form onSubmit={(e) => handleUpdate(e)} className="flex flex-col">
-        <div className="flex flex-col">
-          <label>Title</label>
-          <input
-            value={updatedTitle}
-            type="text"
-            onChange={(e) => setUpdatedTitle(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label>Text</label>
-          <input
-            value={updatedText}
-            type="text"
-            onChange={(e) => setUpdatedText(e.target.value)}
-          />
-        </div>
-        <div className="flex">
-          <label>Publish</label>
-          <input
-            type="checkbox"
-            checked={updatedPublished}
-            onChange={() => setPublished(!updatedPublished)}
-          />
-        </div>
-        <button type="submit">Update</button>
-      </form>
+      <Form
+        hTitle="Update this post"
+        title={updatedTitle}
+        text={updatedText}
+        pubd={updatedPublished}
+        setTitle={setUpdatedTitle}
+        setText={setUpdatedText}
+        setPubd={setPublished}
+        onSubmit={handleUpdate}
+      />
     </div>
   );
 };

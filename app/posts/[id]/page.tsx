@@ -1,8 +1,8 @@
 "use client";
+import CommentField from "@/app/components/CommentField";
 import Heading from "@/app/components/UI_components/Heading";
-import { fetchRequest, opts_get } from "@/app/utils/api_actions";
+import { fetchPost, opts_get } from "@/app/utils/api_actions";
 import { PostWithComments } from "@/app/utils/types";
-import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
@@ -15,12 +15,13 @@ export default function Page({ params }: { params: { id: string } }) {
     return { __html: post?.text };
   };
   useEffect(() => {
-    fetchRequest(API_PAGE_ID, opts_get, "post", setPost);
+    fetchPost(API_PAGE_ID, opts_get, setPost);
   }, []);
   return (
-    <div className="h-screen flex flex-col gap-10">
+    <div className="h-screen flex flex-col gap-10 p-10">
       <Heading title={post?.title} />
       <div dangerouslySetInnerHTML={createHtml()}></div>
+      <CommentField API_PAGE_ID={API_PAGE_ID}/>
       <div>
         {post?.comments.map((c, i) => (
           <div key={i}>

@@ -1,17 +1,5 @@
 import { getJwtToken } from "./authentication";
 
-async function fetchRequest(url: string, opts: {}, type: string, setter: any) {
-  await fetch(url, opts)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("data by default:", data);
-      console.log("data with the set type", data[type]);
-      setter(data[type]);
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-}
 
 async function loginRequest(
   url: string,
@@ -52,6 +40,18 @@ async function fetchAllPosts(url: string, opts: {}, setter: any) {
     });
 }
 
+async function fetchPost(url: string, opts: {}, setter: any) {
+  await fetch(url, opts)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data, data.post);
+      setter(data.post);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+}
+
 async function fetchPublished(url: string, opts: {}, setter: any) {
   await fetch(url, opts)
     .then((response) => response.json())
@@ -77,12 +77,22 @@ async function createPost(url: string, opts: {}, setter: any) {
       console.log(error.message);
     });
 }
-
+async function createComment(url: string, opts: {}, setter:any) {
+  await fetch(url, opts)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data, "comment was sent");
+    setter(data);
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
+}
 async function updatePost(url: string, opts: {}, setter: any) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
-      console.log("redirecting....");
+      console.log("redirecting to....");
       setter(true);
     })
     .catch((err) => {
@@ -105,6 +115,7 @@ async function deletePost(
       console.log(err.message);
     });
 }
+
 const opts_get = {
   method: "GET",
 };
@@ -134,11 +145,12 @@ const opts_delete = {
 };
 
 export {
-  fetchRequest,
+  fetchPost,
   loginRequest,
   fetchAllPosts,
   fetchPublished,
   createPost,
+  createComment, 
   updatePost,
   deletePost,
   opts_get,
