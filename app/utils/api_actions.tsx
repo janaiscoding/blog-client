@@ -1,6 +1,5 @@
 import { getJwtToken } from "./authentication";
 
-
 async function loginRequest(
   url: string,
   opts: {},
@@ -44,7 +43,6 @@ async function fetchPost(url: string, opts: {}, setter: any) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data, data.post);
       setter(data.post);
     })
     .catch((error) => {
@@ -70,29 +68,32 @@ async function createPost(url: string, opts: {}, setter: any) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data, "post was created");
       setter(data.post._id);
     })
     .catch((error) => {
       console.log(error.message);
     });
 }
-async function createComment(url: string, opts: {}, setter:any) {
-  await fetch(url, opts)
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data, "comment was sent");
-    setter(data);
-  })
-  .catch((error) => {
-    console.log(error.message);
-  });
-}
-async function updatePost(url: string, opts: {}, setter: any) {
+async function createComment(
+  url: string,
+  opts: {},
+  refresher: boolean,
+  setter: any
+) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
-      console.log("redirecting to....");
+      setter(!refresher);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+}
+async function updatePost(url: string, opts: {}, setter: any) {
+  console.log(url);
+  await fetch(url, opts)
+    .then((response) => response.json())
+    .then((data) => {
       setter(true);
     })
     .catch((err) => {
@@ -128,6 +129,13 @@ const opts_post = {
   },
   body: "",
 };
+const opts_post_comment = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: "",
+};
 const opts_put = {
   method: "PUT",
   headers: {
@@ -150,11 +158,12 @@ export {
   fetchAllPosts,
   fetchPublished,
   createPost,
-  createComment, 
+  createComment,
   updatePost,
   deletePost,
   opts_get,
   opts_post,
+  opts_post_comment,
   opts_put,
   opts_delete,
 };

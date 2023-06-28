@@ -1,30 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { createComment, opts_post } from "../utils/api_actions";
+import { createComment, opts_post_comment } from "../utils/api_actions";
 
-const CommentField = ({ API_PAGE_ID }: { API_PAGE_ID: string }) => {
+const CommentField = ({ API_PAGE_ID, refresher, setRefresher }: any) => {
   const [name, setName] = useState(String);
   const [comment, setComment] = useState(String);
-  const [data, setData] = useState();
-  const handleSubmit = async (e: any) => {
+
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    await fetch(API_PAGE_ID, {
-        method:'POST',
-        body: JSON.stringify({comment, name})
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data, "comment was sent");
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-    console.log(JSON.stringify({comment, name}))
-    // opts_post.body = JSON.stringify({ comment, name });
-    // console.log(API_PAGE_ID);
-    // createComment(API_PAGE_ID, opts_post, setData);
-    // console.log(data);
+    opts_post_comment.body = JSON.stringify({ comment, name });
+    createComment(API_PAGE_ID, opts_post_comment, refresher, setRefresher);
   };
   return (
     <form className="flex flex-col gap-2" onSubmit={(e) => handleSubmit(e)}>

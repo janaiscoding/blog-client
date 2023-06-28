@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Page({ params }: { params: { id: string } }) {
   const [post, setPost] = useState<PostWithComments>();
-
+  const [refresher, setRefresher] = useState(Boolean)
   const API_PAGE_ID = `https://janas-blog-api.fly.dev/posts/${params.id}`;
 
   //Dangerous by default,but fine in this scenario where I am the only admin and only the fetched posts.text gets html'd
@@ -16,12 +16,13 @@ export default function Page({ params }: { params: { id: string } }) {
   };
   useEffect(() => {
     fetchPost(API_PAGE_ID, opts_get, setPost);
-  }, []);
+    console.log(refresher)
+  }, [refresher]);
   return (
     <div className="h-screen flex flex-col gap-10 p-10">
       <Heading title={post?.title} />
       <div dangerouslySetInnerHTML={createHtml()}></div>
-      <CommentField API_PAGE_ID={API_PAGE_ID}/>
+      <CommentField API_PAGE_ID={API_PAGE_ID} refresher={refresher} setRefresher={setRefresher}/>
       <div>
         {post?.comments.map((c, i) => (
           <div key={i}>
