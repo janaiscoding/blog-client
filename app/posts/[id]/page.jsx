@@ -2,24 +2,18 @@
 import CommentField from "@/app/components/CommentField";
 import Comment from "@/app/components/UI_components/Comment";
 import Heading from "@/app/components/UI_components/Heading";
-import { opts_get } from "@/app/utils/api_actions";
-import { useState } from "react";
+import { fetchPost, opts_get } from "@/app/utils/api_actions";
+import { useEffect, useState } from "react";
 
 export default async function Page({ params }) {
+  const [post, setPost] = useState()
   const [refresher, setRefresher] = useState(false);
   const API_PAGE_ID = `https://janas-blog-api.fly.dev/posts/${params.id}`;
-  const post = await fetch(API_PAGE_ID, opts_get)
-    .then((response) => response.json())
-    .then((data) => {
-      return data.post;
-    })
-    .catch((error) => {
-      console.log(error.message);
-    })
-    .finally(() => {
-      return;
-    });
 
+  useEffect(() => {
+    console.log('loaded page, using effect...')
+    fetchPost(API_PAGE_ID, opts_get, setPost, refresher, setRefresher);
+  }, [refresher]);
   return (
     <div className="flex flex-col gap-2 p-10 min-h-screen">
       <div className="text-sm breadcrumbs">

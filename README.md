@@ -1,5 +1,7 @@
 # BLOG APP - Client 
 
+### Important: Frontend still not finished - I've got some bugs and things I am still working on ^^
+
 - Fullstack application made with MERN stack. Blog website fetching data from the REST API, which has some protected routes, with JWT Token Auth. 
 - Anyone can comment, but only the admin can manipulate the blog posts, from the CMS client (where I am using a content-rich text editor called [TinyMCE](https://www.tiny.cloud/))
 - The actual styling of the app is very minimal atm.
