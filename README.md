@@ -1,4 +1,40 @@
-# BLOG CLIENT MADE WITH NEXT.JS
+# BLOG APP - Client 
+
+- Fullstack application made with MERN stack. Blog website fetching data from the REST API, which has some protected routes, with JWT Token Auth. 
+- Anyone can comment, but only the admin can manipulate the blog posts, from the CMS client (where I am using a content-rich text editor called [TinyMCE](https://www.tiny.cloud/))
+- The actual styling of the app is very minimal atm.
+
+[Live Deploy](https://blog-client-smoky.vercel.app/) | [CMS Repo](https://github.com/janaiscoding/blog-cms) | [REST API Repo](https://github.com/janaiscoding/blog-api)
+
+## Live Demo 
+![Preview on desktop]()
+
+## Getting Started - Installing and running 
+```
+git clone git@github.com:janaiscoding/blog-client.git
+cd blog-client
+npm install 
+npm run dev 
+navigate to localhost:3000
+```
+
+# Built with
+
+## Technologies 
+
+- ReactJs, Next.js
+- JavaScript and TypeScript
+- TailwindCSS
+
+## Tools Used
+
+- Visual Studio Code
+- npm package manager
+- Linux Terminal
+- Git and Github
+
+
+## Random thoughts and insights
 
 Very excited to learn how to do a Next.js app and also finally use TypeScript
 
