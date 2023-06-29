@@ -17,18 +17,33 @@ export default function Page({ params }: { params: { id: string } }) {
   };
   useEffect(() => {
     fetchPost(API_PAGE_ID, opts_get, setPost);
-    console.log(refresher);
   }, [refresher]);
   return (
-    <div className="flex flex-col gap-10 p-10">
+    <div className="flex flex-col gap-2 p-10 min-h-screen">
+      <div className="text-sm breadcrumbs">
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/posts">All Posts</a>
+          </li>
+          <li>Post</li>
+        </ul>
+      </div>
       <Heading title={post?.title} />
-      <div dangerouslySetInnerHTML={createHtml()}></div>
+      <div
+        dangerouslySetInnerHTML={createHtml()}
+        className="min-h-[20vh]"
+      ></div>
+      {/* comment form field  */}
       <CommentField
         API_PAGE_ID={API_PAGE_ID}
         refresher={refresher}
         setRefresher={setRefresher}
       />
-      <div className="flex flex-col gap-2 ">
+      {/* comment list */}
+      <div className="flex flex-col gap-2">
         {post?.comments.map((c, i) => (
           <Comment
             key={i}

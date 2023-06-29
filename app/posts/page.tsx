@@ -12,7 +12,7 @@ const Posts = () => {
     fetchPublished(API_ALL_POSTS, opts_get, setPosts);
   }, []);
   return (
-    <main className="flex flex-col p-24">
+    <main className="flex flex-col p-24 min-h-screen">
       <Heading title={"Published blog posts"} />
       {posts.map((post, i) => (
         <div key={i}>

@@ -27,18 +27,20 @@ async function createComment(
   url: string,
   opts: {},
   refresher: boolean,
-  setter: any
+  setter: any,
+  errorSetter: any
 ) {
   await fetch(url, opts)
     .then((response) => {
-      console.log(response);
       return response.json();
     })
     .then((data) => {
+      errorSetter(data.errors)
       setter(!refresher);
     })
     .catch((error) => {
       console.log(error.message);
+      //unhandled error
     });
 }
 
