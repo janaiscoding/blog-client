@@ -3,12 +3,11 @@ import CommentField from "@/app/components/CommentField";
 import Comment from "@/app/components/UI_components/Comment";
 import Heading from "@/app/components/UI_components/Heading";
 import { fetchPost, opts_get } from "@/app/utils/api_actions";
-import { PostWithComments } from "@/app/utils/types";
 import { useEffect, useState } from "react";
 
-export default function Page({ params }: { params: { id: string } }) {
-  const [post, setPost] = useState<PostWithComments>();
-  const [refresher, setRefresher] = useState(Boolean);
+export default function Page({ params }) {
+  const [post, setPost] = useState();
+  const [refresher, setRefresher] = useState();
   const API_PAGE_ID = `https://janas-blog-api.fly.dev/posts/${params.id}`;
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export default function Page({ params }: { params: { id: string } }) {
         </ul>
       </div>
       <Heading title={post?.title} />
-      <div dangerouslySetInnerHTML={{__html: post?.text}}></div>
+      <div dangerouslySetInnerHTML={{__html: post.text}}></div>
       {/* comment form field  */}
       <CommentField
         API_PAGE_ID={API_PAGE_ID}
