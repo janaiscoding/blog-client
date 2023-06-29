@@ -16,6 +16,6 @@ So far, I've managed to:
   4. Send JWT payload with user info too for a pretty admin page :") (FIXED)
   5. Only display published posts on /posts path (FIXED)
   6. Admin page (working on this) -- SEPARATING ONTO A CMS 
-  7. Fix `Unexpected token '<', "<!DOCTYPE "... is not valid JSON` error on send comment event. (FIXED: I was sending wrong order I think - weird stuff)
+  7. Fix `Unexpected token '<', "<!DOCTYPE "... is not valid JSON` error on send comment event : I get it when posting this type of stuff: ';;';';
 
 - I'm also writing many different functions and objects as utility stuff I can re-use so my code looks cleaner and way less convoluted.
