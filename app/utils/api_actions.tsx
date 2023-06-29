@@ -1,8 +1,10 @@
-async function fetchPost(url: string, opts: {}, setter: any) {
+async function fetchPost(url: string, opts: {}, setter: any, refresher:any, setterRefresh: any) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
       setter(data.post);
+      setterRefresh(!refresher)
+      console.log(refresher,'...')
     })
     .catch((error) => {
       console.log(error.message);
