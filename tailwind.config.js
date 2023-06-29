@@ -41,5 +41,5 @@ module.exports = {
       wiggle: "wiggle 1s ease-in-out infinite",
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

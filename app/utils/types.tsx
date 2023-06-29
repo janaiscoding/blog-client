@@ -3,6 +3,7 @@ type Post = {
   text: string;
   _id: string;
   comments: [];
+  createdAt: string;
 };
 
 type PostWithComments = {

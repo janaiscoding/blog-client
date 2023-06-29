@@ -20,7 +20,7 @@ export default function Page({ params }: { params: { id: string } }) {
     console.log(refresher);
   }, [refresher]);
   return (
-    <div className="h-screen flex flex-col gap-10 p-10">
+    <div className="flex flex-col gap-10 p-10">
       <Heading title={post?.title} />
       <div dangerouslySetInnerHTML={createHtml()}></div>
       <CommentField
