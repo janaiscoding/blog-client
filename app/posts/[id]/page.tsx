@@ -11,10 +11,6 @@ export default function Page({ params }: { params: { id: string } }) {
   const [refresher, setRefresher] = useState(Boolean);
   const API_PAGE_ID = `https://janas-blog-api.fly.dev/posts/${params.id}`;
 
-  //Dangerous by default,but fine in this scenario where I am the only admin and only the fetched posts.text gets html'd
-  const createHtml = () => {
-    return { __html: post?.text };
-  };
   useEffect(() => {
     fetchPost(API_PAGE_ID, opts_get, setPost);
   }, [refresher]);
@@ -28,14 +24,11 @@ export default function Page({ params }: { params: { id: string } }) {
           <li>
             <a href="/posts">All Posts</a>
           </li>
-          <li>Post</li>
+          <li>Current Post</li>
         </ul>
       </div>
       <Heading title={post?.title} />
-      <div
-        dangerouslySetInnerHTML={createHtml()}
-        className="min-h-[20vh]"
-      ></div>
+      <div dangerouslySetInnerHTML={{__html: post?.text}}></div>
       {/* comment form field  */}
       <CommentField
         API_PAGE_ID={API_PAGE_ID}
