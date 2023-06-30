@@ -3,8 +3,8 @@ async function fetchPost(url: string, opts: {}, setter: any, refresher:any, sett
     .then((response) => response.json())
     .then((data) => {
       setter(data.post);
+      console.log(data, data.post)
       setterRefresh(!refresher)
-      console.log(refresher,'Post was setted...')
     })
     .catch((error) => {
       console.log(error.message);

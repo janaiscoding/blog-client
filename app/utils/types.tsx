@@ -18,6 +18,7 @@ type PostWithComments = {
     }
   ];
   published: Boolean;
+  createdAt: string;
 };
 
 export type { Post, PostWithComments };
