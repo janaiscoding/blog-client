@@ -5,7 +5,7 @@ import { createComment, opts_post_comment } from "../utils/api_actions";
 import Button from "./UI_components/Button";
 import Subheading from "./UI_components/Subheading";
 
-const CommentField = ({ API_PAGE_ID, refresher, setRefresher }: any) => {
+const CommentField = ({ API_PAGE_ID }: any) => {
   const [name, setName] = useState(String);
   const [comment, setComment] = useState(String);
   const [errors, setErrors] = useState([]);
@@ -13,17 +13,12 @@ const CommentField = ({ API_PAGE_ID, refresher, setRefresher }: any) => {
     setName("");
     setComment("");
   };
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     opts_post_comment.body = JSON.stringify({ name, comment });
-    createComment(
-      API_PAGE_ID,
-      opts_post_comment,
-      refresher,
-      setRefresher,
-      setErrors,
-      handleClear
-    );
+   //issue here
+    console.log(name, comment);
+    await createComment(API_PAGE_ID, opts_post_comment, setErrors, handleClear);
   };
   return (
     <form
@@ -56,14 +51,7 @@ const CommentField = ({ API_PAGE_ID, refresher, setRefresher }: any) => {
           : ""}
       </div>
       <div>
-        <Button
-          type="submit"
-          content="Submit"
-          //do nothing in particular because it's a form submit handler
-          onClick={() => {
-            return;
-          }}
-        />
+            <button type="submit" className="btn btn-neutral">Submit</button>
       </div>
     </form>
   );

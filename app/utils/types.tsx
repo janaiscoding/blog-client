@@ -20,5 +20,9 @@ type PostWithComments = {
   published: Boolean;
   createdAt: string;
 };
-
-export type { Post, PostWithComments };
+type CommentType = {
+  name: string;
+  comment: string;
+  createdAt: string;
+};
+export type { Post, PostWithComments, CommentType };

@@ -1,10 +1,16 @@
-async function fetchPost(url: string, opts: {}, setter: any, refresher:any, setterRefresh: any) {
-  await fetch(url, opts)
+async function fetchPost(
+  url: string,
+  setter: any,
+  refresher: any,
+  setterRefresh: any,
+  setMarkup: any
+) {
+  await fetch(url)
     .then((response) => response.json())
     .then((data) => {
       setter(data.post);
-      console.log(data, data.post)
-      setterRefresh(!refresher)
+      setMarkup({ __html: `${data.post?.text}` });
+      setterRefresh(!refresher);
     })
     .catch((error) => {
       console.log(error.message);
@@ -28,22 +34,18 @@ async function fetchPublished(url: string, opts: {}, setter: any) {
 async function createComment(
   url: string,
   opts: {},
-  refresher: boolean,
-  setter: any,
   errorSetter: any,
   handleClear: any
 ) {
   await fetch(url, opts)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data)
       if (data.errors) {
         errorSetter(data.errors);
-        console.log("....Errors");
-        setter(!refresher);
       } else {
         handleClear();
         errorSetter([]);
-        setter(!refresher);
       }
     })
     .catch((error) => {
