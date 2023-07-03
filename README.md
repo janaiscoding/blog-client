@@ -3,7 +3,7 @@
 [Live Deploy](https://blog-client-smoky.vercel.app/) | [CMS Repo](https://github.com/janaiscoding/blog-cms) | [REST API Repo](https://github.com/janaiscoding/blog-api)
 
 
-![Live blog client preview]()
+![Live blog client preview](https://github.com/janaiscoding/blog-client/blob/main/public/blog-client-preview.gif)
 
 - Fullstack application made with MERN stack.
 - Blog website fetching data from the REST API, which has protected routes, with JWT Token Auth. 
