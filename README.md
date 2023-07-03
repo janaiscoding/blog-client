@@ -4,9 +4,12 @@
 
 
 
-- Fullstack application made with MERN stack. Blog website fetching data from the REST API, which has protected routes, with JWT Token Auth. 
+- Fullstack application made with MERN stack.
+- Blog website fetching data from the REST API, which has protected routes, with JWT Token Auth. 
 - Anyone can comment, but only the admin can manipulate the blog posts, from the CMS client (where I am using a content-rich text editor called [TinyMCE](https://www.tiny.cloud/))
 - The actual styling of the app is very minimal atm.
+- Using Server Side components for fetching posts, also revalidating homepage on-demand every 60seconds. 
+- Comments will trigger a re-rendering of the comment section. 
 
 ## Live Demo 
 ![Preview on desktop]()
