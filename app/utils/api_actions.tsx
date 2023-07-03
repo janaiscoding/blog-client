@@ -36,7 +36,6 @@ async function createComment(
     .then((data) => {
       if (data.errors) {
         errorSetter(data.errors);
-        console.log(data.errors)
       } else {
         setRefresher(!refresher);
         handleClear();
