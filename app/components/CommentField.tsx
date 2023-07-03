@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createComment, opts_post_comment } from "../utils/api_actions";
-import Button from "./UI_components/Button";
 import Subheading from "./UI_components/Subheading";
 
-const CommentField = ({ API_PAGE_ID }: any) => {
+const CommentField = ({ API_PAGE_ID, refresher, setRefresher }: any) => {
   const [name, setName] = useState(String);
   const [comment, setComment] = useState(String);
   const [errors, setErrors] = useState([]);
@@ -16,9 +15,14 @@ const CommentField = ({ API_PAGE_ID }: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     opts_post_comment.body = JSON.stringify({ name, comment });
-   //issue here
-    console.log(name, comment);
-    await createComment(API_PAGE_ID, opts_post_comment, setErrors, handleClear);
+    await createComment(
+      API_PAGE_ID,
+      opts_post_comment,
+      setErrors,
+      handleClear,
+      refresher,
+      setRefresher
+    );
   };
   return (
     <form
@@ -51,7 +55,9 @@ const CommentField = ({ API_PAGE_ID }: any) => {
           : ""}
       </div>
       <div>
-            <button type="submit" className="btn btn-neutral">Submit</button>
+        <button type="submit" className="btn btn-neutral">
+          Submit
+        </button>
       </div>
     </form>
   );
