@@ -3,9 +3,10 @@ import { API_ALL_POSTS } from "./utils/api_keys";
 import { PostWithComments } from "./utils/types";
 
 const Posts = async () => {
-  const res = await fetch(API_ALL_POSTS, { next: { revalidate: 10 } });
+  const res = await fetch(API_ALL_POSTS, { next: { revalidate: 0 } });
   const data = await res.json();
   const posts = data.posts;
+
   return (
     <main className="flex flex-col md:p-24 min-h-screen">
       <Heading title={"JanaIsCoding's Blog"} />
