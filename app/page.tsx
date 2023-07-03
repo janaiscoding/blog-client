@@ -1,3 +1,4 @@
+import Footer from "./components/UI_components/Footer";
 import Heading from "./components/UI_components/Heading";
 import { API_ALL_POSTS } from "./utils/api_keys";
 import { PostWithComments } from "./utils/types";
@@ -8,7 +9,8 @@ const Posts = async () => {
   const posts = data.posts;
 
   return (
-    <main className="flex flex-col md:p-24 min-h-screen">
+    <main className="flex flex-col min-h-screen justify-between px-6 max-w-6xl h-20 md:mx-auto">
+      <div className="mt-10">
       <Heading title={"JanaIsCoding's Blog"} />
       {posts.map((post: PostWithComments, i: string) => (
         <div key={i}>
@@ -21,6 +23,8 @@ const Posts = async () => {
           </p>
         </div>
       ))}
+      </div>
+      <Footer />
     </main>
   );
 };

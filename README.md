@@ -2,6 +2,7 @@
 
 [Live Deploy](https://blog-client-smoky.vercel.app/) | [CMS Repo](https://github.com/janaiscoding/blog-cms) | [REST API Repo](https://github.com/janaiscoding/blog-api)
 
+# Live preview
 
 ![Live blog client preview](https://github.com/janaiscoding/blog-client/blob/main/public/blog-client-preview.gif)
 
@@ -12,8 +13,6 @@
 - Using Server Side components for fetching posts, also revalidating homepage on-demand every 60seconds. 
 - Comments will trigger a re-rendering of the comment section. 
 
-## Live Demo 
-![Preview on desktop]()
 
 ## Getting Started - Installing and running 
 ```
