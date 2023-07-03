@@ -1,12 +1,12 @@
-# BLOG APP - Client 
-
-### Important: Frontend still not finished - I've got some bugs and things I am still working on ^^
-
-- Fullstack application made with MERN stack. Blog website fetching data from the REST API, which has some protected routes, with JWT Token Auth. 
-- Anyone can comment, but only the admin can manipulate the blog posts, from the CMS client (where I am using a content-rich text editor called [TinyMCE](https://www.tiny.cloud/))
-- The actual styling of the app is very minimal atm.
+# JanaIsCoding's Blog 
 
 [Live Deploy](https://blog-client-smoky.vercel.app/) | [CMS Repo](https://github.com/janaiscoding/blog-cms) | [REST API Repo](https://github.com/janaiscoding/blog-api)
+
+
+
+- Fullstack application made with MERN stack. Blog website fetching data from the REST API, which has protected routes, with JWT Token Auth. 
+- Anyone can comment, but only the admin can manipulate the blog posts, from the CMS client (where I am using a content-rich text editor called [TinyMCE](https://www.tiny.cloud/))
+- The actual styling of the app is very minimal atm.
 
 ## Live Demo 
 ![Preview on desktop]()
@@ -17,7 +17,7 @@ git clone git@github.com:janaiscoding/blog-client.git
 cd blog-client
 npm install 
 npm run dev 
-navigate to localhost:3000
+Listening on localhost:3000
 ```
 
 # Built with
@@ -25,7 +25,7 @@ navigate to localhost:3000
 ## Technologies 
 
 - ReactJs, Next.js
-- JavaScript and TypeScript
+- JavaScript, TypeScript
 - TailwindCSS
 
 ## Tools Used
@@ -53,7 +53,7 @@ So far, I've managed to:
   3. Because of my poor error handling at the moment, I have a weird scenario where it could set my JWT key to `undefined` which is obviously no bueno. (FIXED)
   4. Send JWT payload with user info too for a pretty admin page :") (FIXED)
   5. Only display published posts on /posts path (FIXED)
-  6. Admin page (working on this) -- SEPARATING ONTO A CMS 
-  7. Fix `Unexpected token '<', "<!DOCTYPE "... is not valid JSON` error on send comment event : I get it when posting this type of stuff: ';;';';
+  6. Admin page -- SEPARATING ONTO A CMS (FINISHED)
+  7. Fix `Unexpected token '<', "<!DOCTYPE "... is not valid JSON` error on send comment event : I get it when posting this type of stuff: ';;';'; (FIXED, this was an error where the escaped characters exceeded the maximum length specified in the mongoose validation schema)
 
 - I'm also writing many different functions and objects as utility stuff I can re-use so my code looks cleaner and way less convoluted.

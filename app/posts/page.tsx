@@ -3,7 +3,7 @@ import Heading from "../components/UI_components/Heading";
 import { API_ALL_POSTS } from "../utils/api_keys";
 
 const Posts = async () => {
-  const res = await fetch(API_ALL_POSTS);
+  const res = await fetch(API_ALL_POSTS, { next: { revalidate: 60 } });
   const data = await res.json();
   const posts = data.posts;
   return (
