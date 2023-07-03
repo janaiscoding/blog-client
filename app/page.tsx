@@ -3,7 +3,7 @@ import { API_ALL_POSTS } from "./utils/api_keys";
 import { PostWithComments } from "./utils/types";
 
 const Posts = async () => {
-  const res = await fetch(API_ALL_POSTS, { next: { revalidate: 60 } });
+  const res = await fetch(API_ALL_POSTS, { next: { revalidate: 10 } });
   const data = await res.json();
   const posts = data.posts;
   return (
