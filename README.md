@@ -1,6 +1,6 @@
 # JanaIsCoding's Blog 
 
-[Live Deploy](https://blog-client-smoky.vercel.app/) | [CMS Repo](https://github.com/janaiscoding/blog-cms) | [REST API Repo](https://github.com/janaiscoding/blog-api)
+[Live Deploy](https://janaiscoding-blog.vercel.app/) | [CMS Repo](https://github.com/janaiscoding/blog-cms) | [REST API Repo](https://github.com/janaiscoding/blog-api)
 
 # Live preview
 

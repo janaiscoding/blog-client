@@ -1,6 +1,5 @@
 "use client";
 
-
 import Comment from "@/app/components/UI_components/Comment";
 import { fetchPost } from "@/app/utils/api_actions";
 import { PostWithComments } from "@/app/utils/types";
@@ -23,14 +22,18 @@ const CommentSection = ({ id }: any) => {
       />
       {/* comment list */}
       <div className="flex flex-col gap-2">
-        {post?.comments.map((c: any, i: any) => (
-          <Comment
-            key={i}
-            name={c.name}
-            comment={c.comment}
-            time={c.createdAt}
-          />
-        ))}
+        {post?.comments.length > 0 ? (
+          post?.comments.map((c: any, i: any) => (
+            <Comment
+              key={i}
+              name={c.name}
+              comment={c.comment}
+              time={c.createdAt}
+            />
+          ))
+        ) : (
+          <p className="py-2 text-grey italic">This section is quiet for now...</p>
+        )}
       </div>
     </>
   );
