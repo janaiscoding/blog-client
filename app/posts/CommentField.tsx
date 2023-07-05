@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { createComment, opts_post_comment } from "../utils/api_actions";
-import Subheading from "./UI_components/Subheading";
+
 import Image from "next/image";
 import arrowRight from "public/icons/Arrow.png";
+import Subheading from "../components/UI_components/Subheading";
+
 const CommentField = ({ API_PAGE_ID, refresher, setRefresher }: any) => {
   const [name, setName] = useState(String);
   const [comment, setComment] = useState(String);
@@ -38,14 +40,12 @@ const CommentField = ({ API_PAGE_ID, refresher, setRefresher }: any) => {
         onChange={(e) => setName(e.target.value)}
         placeholder="Your name"
         className="p-2 bg-white border border-solid border-grey rounded"
-
       ></input>
       <textarea
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         placeholder="Your comment"
         className="p-2 bg-white border border-solid border-grey rounded"
-
       />
       <div>
         {errors

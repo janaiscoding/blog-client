@@ -1,10 +1,11 @@
 "use client";
 
-import CommentField from "@/app/components/CommentField";
+
 import Comment from "@/app/components/UI_components/Comment";
 import { fetchPost } from "@/app/utils/api_actions";
 import { PostWithComments } from "@/app/utils/types";
 import { useEffect, useState } from "react";
+import CommentField from "./CommentField";
 
 const CommentSection = ({ id }: any) => {
   const [post, setPost] = useState<PostWithComments>();

@@ -58,5 +58,6 @@ So far, I've managed to:
   5. Only display published posts on /posts path (FIXED)
   6. Admin page -- SEPARATING ONTO A CMS (FINISHED)
   7. Fix `Unexpected token '<', "<!DOCTYPE "... is not valid JSON` error on send comment event : I get it when posting this type of stuff: ';;';'; (FIXED, this was an error where the escaped characters exceeded the maximum length specified in the mongoose validation schema)
+  8. Added suspense and fallback react components
 
-- I'm also writing many different functions and objects as utility stuff I can re-use so my code looks cleaner and way less convoluted.
+  - I'm also writing many different functions and objects as utility stuff I can re-use so my code looks cleaner and way less convoluted.
