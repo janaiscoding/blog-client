@@ -22,7 +22,7 @@ const CommentSection = ({ id }: any) => {
       />
       {/* comment list */}
       <div className="flex flex-col gap-2">
-        {post?.comments.length > 0 ? (
+        {post?.comments.length ? (
           post?.comments.map((c: any, i: any) => (
             <Comment
               key={i}
